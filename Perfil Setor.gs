@@ -2,7 +2,7 @@
 
 DEV: JAILSON A DE SOUSA - TÉCNICO DE INFORMÁTICA
 ENTIDADE: HOSPITAL REGIONAL NORTE - NÚCLEO DE TECNOLOGIA DA INFORMAÇÃO
-Since 2020
+Since 2019
 42
 
 */
@@ -22,9 +22,9 @@ function Gerar_Perfil() {
   var row = 1;
   
   //CONTADOR DE CHAMADOS DE CADA SETOR
-  for (var todos_colC = sheet_todos.getRange(row,3); sheet_todos.getRange(row,3).getValue() != ""; row++){ //CONTA ATÉ QUE HAJA UM VALOR VAZIO NA CÉLULA
+  for (var todos_colC = sheet_todos.getRange(row,1); sheet_todos.getRange(row,1).getValue() != ""; row++){ //CONTA ATÉ QUE HAJA UM VALOR VAZIO NA CÉLULA
     var valor = sheet_todos.getRange(row,3).getValue();
-    var setormacro = sheet_todos.getRange(row,15); //DEFINE A COLUNA O DA ABA TODOS
+    var setormacro = sheet_todos.getRange(row,11); //DEFINE A COLUNA 'K' DA ABA TODOS
     
     if (valor.indexOf("ADMINISTRAÇÃO >") > -1){
       setormacro.setValue("ADMINISTRAÇÃO");
@@ -83,18 +83,20 @@ function Gerar_Perfil() {
     if ((valor.indexOf("SOCIAL") > -1) || (valor.indexOf("OUVIDORIA") > -1)){
     setormacro.setValue("SERV. SOCIAL/OUVIDORIA");
       }
-    if ((valor.indexOf("CENTRO DE ESTUDOS") > -1) || 
+    if ( (valor.indexOf("CENTRO DE ESTUDOS") > -1) || 
     (valor.indexOf("ENGENHARIA") > -1) || 
     (valor.indexOf("SESMT") > -1) || 
     (valor.indexOf("AGÊNCIA TRANSFUSIONAL") > -1) || 
     (valor.indexOf("EQUIPAMENTOS") > -1) || 
     (valor.indexOf("MANUTENÇÃO") > -1) || 
     (valor.indexOf("CME") > -1) || 
-    (valor.indexOf("TRANSPORTE") > -1)){
+    (valor.indexOf("TRANSPORTE") > -1) ||
+    (valor == "") || (valor == null) )
+      {
       setormacro.setValue("OUTROS");
       }
       
-    todos_colC = sheet_todos.getRange(row,3);
+    todos_colC = sheet_todos.getRange(row,1);
     }//FIM FOR
 
   //ALERTA DE FIM DA EXECUÇÃO DO SCRIPT
